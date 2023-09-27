@@ -1,56 +1,34 @@
 <!DOCTYPE html>
-    <html>
-    <head>
-        <title>Show Date and Time</title>
-        <style>
-            .button {
-                font-size: 16px;
-                padding: 5px 10px;
-            }
-        </style>
-        <title>Task 4 Javascript Shrinidhi B</title>
-    </head>
-    <body>
-        <div>
-            <button id="showDateButton" class="button">show date</button>
-            <p id="dateDisplay"></p>
-        </div>
-        <div>
-            <button id="showTimeButton" class="button">show time</button>
-        </div>
-        <p id="timeDisplay"></p>
-    
-        <script>
-            document.getElementById("showDateButton").addEventListener("click", function() {
-                var currentDate = new Date();
-                var dateDisplay = document.getElementById("dateDisplay");
-                
-                var date = currentDate.getDate() + '/' + getMonthName(currentDate.getMonth()) + '/' + currentDate.getFullYear();
-                
-                dateDisplay.textContent =   date;
-                
-                document.getElementById("timeDisplay").textContent = "";
-            });
-    
-            document.getElementById("showTimeButton").addEventListener("click", function() {
-                var currentDate = new Date();
-                var timeDisplay = document.getElementById("timeDisplay");
-                
-                var time = currentDate.toString();
-                
-                timeDisplay.textContent =  time;
-                
-                document.getElementById("dateDisplay").textContent = "";
-            });
-    
-            function getMonthName(monthIndex) {
-                var months = [
-                    "January", "February", "March", "April", "May", "June",
-                    "July", "August", "September", "October", "November", "December"
-                ];
-                return months[monthIndex];
-            }
-        </script>
-    </body>
-    </html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title><title>Task 4 Javascript Shrinidhi B</title></title>
+</head>
+<body>
+    <div style="margin-left:45%;margin-top: 5%;">
+    <button onclick="date()">show date</button>
+    <p id="output"></p>
+    <button onclick="time()">show Time</button>
+    <p id="output1"></p>
+    <script>
+        function date(){
+        const currentDate = new Date();
+        const day = currentDate.getDate();
+        const month = currentDate.toLocaleString('default', { month: 'long' }); // Get the full month name
+        const year = currentDate.getFullYear();
+
+        const formattedDate = `${day}/${month}/${year}`;
+        document.getElementById("output").textContent= formattedDate;
+        }
+        function time(){
+        const currentDate = new Date();
+
+        const dateTimeString = currentDate.toString();
+        document.getElementById("output1").textContent= dateTimeString;
+        }
+    </script>
+    </div>
+</body>
+</html>
     
