@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+    <html>
+    <head>
+        <title>Show Date and Time</title>
+        <style>
+            .button {
+                font-size: 16px;
+                padding: 5px 10px;
+            }
+        </style>
+        <title>Task 4 Javascript Shrinidhi B</title>
+    </head>
+    <body>
+        <div>
+            <button id="showDateButton" class="button">show date</button>
+            <p id="dateDisplay"></p>
+        </div>
+        <div>
+            <button id="showTimeButton" class="button">show time</button>
+        </div>
+        <p id="timeDisplay"></p>
+    
+        <script>
+            document.getElementById("showDateButton").addEventListener("click", function() {
+                var currentDate = new Date();
+                var dateDisplay = document.getElementById("dateDisplay");
+                
+                var date = currentDate.getDate() + '/' + getMonthName(currentDate.getMonth()) + '/' + currentDate.getFullYear();
+                
+                dateDisplay.textContent =   date;
+                
+                document.getElementById("timeDisplay").textContent = "";
+            });
+    
+            document.getElementById("showTimeButton").addEventListener("click", function() {
+                var currentDate = new Date();
+                var timeDisplay = document.getElementById("timeDisplay");
+                
+                var time = currentDate.toString();
+                
+                timeDisplay.textContent =  time;
+                
+                document.getElementById("dateDisplay").textContent = "";
+            });
+    
+            function getMonthName(monthIndex) {
+                var months = [
+                    "January", "February", "March", "April", "May", "June",
+                    "July", "August", "September", "October", "November", "December"
+                ];
+                return months[monthIndex];
+            }
+        </script>
+    </body>
+    </html>
+    

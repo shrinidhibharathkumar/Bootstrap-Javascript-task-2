@@ -1,0 +1,143 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Task 5 Javascript Shrinidhi B</title>
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script> <!-- Include jQuery via CDN -->
+</head>
+<body>
+    <style>
+        #contact label {
+            display: inline-block;
+            width: 100px;
+            text-align: right;
+        }
+        #contact_submit {
+            padding-left: 100px;
+        }
+        #contact div {
+            margin-top: 1em;
+        }
+        textarea {
+            vertical-align: top;
+            height: 5em;
+        }
+        .error {
+            display: none;
+            margin-left: 10px;
+            color: red;
+        }
+        input.invalid,
+        textarea.invalid {
+            border: 2px solid red;
+        }
+        input.valid,
+        textarea.valid {
+            border: 2px solid green;
+        }
+    </style>
+
+    <script>
+        $(document).ready(function () {
+            // Real-time Validation for Name
+            $('#contact_name').on('input', function () {
+                var input = $(this);
+                var is_name = input.val().trim(); // Trim the input value
+                if (is_name) {
+                    input.removeClass("invalid").addClass("valid");
+                } else {
+                    input.removeClass("valid").addClass("invalid");
+                }
+            });
+
+            // Real-time Validation for Email
+            $('#contact_email').on('input', function () {
+                var input = $(this);
+                var re = /^[a-zA-Z0-9.!#$%&'*+/=?^_`{|}~-]+@[a-zA-Z0-9-]+(?:\.[a-zA-Z0-9-]+)*$/;
+                var is_email = re.test(input.val());
+                if (is_email) {
+                    input.removeClass("invalid").addClass("valid");
+                } else {
+                    input.removeClass("valid").addClass("invalid");
+                }
+            });
+
+            // Real-time Validation for Website
+            $('#contact_website').on('input', function () {
+                var input = $(this);
+                var url = input.val().trim(); // Trim the input value
+                if (url.substring(0, 4) === 'www.') {
+                    input.val('http://www.' + url.substring(4));
+                }
+                var re = /(http|ftp|https):\/\/[\w-]+(\.[\w-]+)+([\w.,@?^=%&amp;:\/~+#-]*[\w@?^=%&amp;\/~+#-])?/;
+                var is_url = re.test(input.val());
+                if (is_url) {
+                    input.removeClass("invalid").addClass("valid");
+                } else {
+                    input.removeClass("valid").addClass("invalid");
+                }
+            });
+
+            // Real-time Validation for Message
+            $('#contact_message').on('input', function () {
+                var input = $(this);
+                var message = input.val().trim(); // Trim the input value
+                if (message) {
+                    input.removeClass("invalid").addClass("valid");
+                } else {
+                    input.removeClass("valid").addClass("invalid");
+                }
+            });
+
+            // Form Submission Validation
+            $("#contact_submit button").click(function (event) {
+                var form_data = $("#contact").serializeArray();
+                var error_free = true;
+                for (var input in form_data) {
+                    var element = $("#contact_" + form_data[input]['name']);
+                    var valid = element.hasClass("valid");
+                    var error_element = $("span.error", element.parent());
+                    if (!valid) {
+                        error_element.removeClass("error").addClass("error_show");
+                        error_free = false;
+                    } else {
+                        error_element.removeClass("error_show").addClass("error");
+                    }
+                }
+                if (!error_free) {
+                    event.preventDefault();
+                } else {
+                    alert('No errors: Form will be submitted');
+                }
+            });
+        });
+    </script>
+
+    <form id="contact" method="post" action="">
+        <div>
+            <label for="contact_name">Name:</label>
+            <input type="text" id="contact_name" name="name">
+            <span class="error" style="color: red;">This field is required</span>
+        </div>
+        <div>
+            <label for="contact_email">Email:</label>
+            <input type="email" id="contact_email" name="email">
+            <span class="error" style="color: red;">A valid email address is required</span>
+        </div>
+        <div>
+            <label for="contact_website">Website:</label>
+            <input type="url" id="contact_website" name="website">
+            <span class="error" style="color: red;">A valid url is required</span>
+        </div>
+        <div>
+            <label for="contact_message">Message:</label>
+            <textarea id="contact_message" name="message"></textarea>
+            <span class="error" style="color: red;">This field is required</span>
+        </div>
+        <div id="contact_submit">
+            <button type="submit">Submit</button>
+        </div>
+    </form>
+</body>
+</html>

@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+         <html>
+         <head>
+           <style>
+             #movingImage {
+               width: 100px;
+               height: 100px;
+               position: relative;
+               
+             }
+           </style>
+           <title>
+            Task 7 Javascript Shrinidhi B</title>  
+         </head>
+         <body>
+           <div style="margin-top: 5%;">
+           <div id="movingImage" style="margin-left: 10%;height: 200px; width: 100px;position: relative;"><img style="height: 200px;" src="train1.png"></div>
+           <h2 style="margin-left: 35%;color: rgb(20, 20, 133);">Click the following buttons to handle animation</h2>
+           <button style="margin-left: 47%;" id="startButton">Start</button>
+           <button id="stopButton">Stop</button>
+           
+         
+           <script>
+             let animationId;
+             const movingImage = document.getElementById('movingImage');
+             const startButton = document.getElementById('startButton');
+             const stopButton = document.getElementById('stopButton');
+         
+             function moveImage() {
+               let position = 0;
+         
+               function step() {
+                 position += 1;
+                 movingImage.style.left = position + 'px';
+         
+                 animationId = requestAnimationFrame(step);
+               }
+               
+               animationId = requestAnimationFrame(step);
+             }
+         
+             function stopAnimation() {
+               if (animationId) {
+                 cancelAnimationFrame(animationId);
+                 animationId = null;
+               }
+             }
+         
+             startButton.addEventListener('click', moveImage);
+             stopButton.addEventListener('click', stopAnimation);
+           </script>
+           </div>
+         </body>
+         </html>   

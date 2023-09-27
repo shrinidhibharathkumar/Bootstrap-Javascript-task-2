@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Task 1 Javascript Shrinidhi B</title>
+    <style>
+        .result-box {
+            display: inline-block;
+            border: 1px solid #000;
+            padding: 5px;
+            text-align: center;
+        }
+    </style>
+</head>
+<body>
+    <h1>JavaScript function that reverses a number</h1>
+    <p>Enter a number to reverse:</p>
+    <input type="number" id="numberInput">
+    <button onclick="reverseNumber()">Reverse</button>
+    
+    <p>Reversed Number: <span id="result" class="result-box"></span></p>
+
+    <script>
+        function reverseNumber() {
+            var number = document.getElementById("numberInput").value;
+            var reversedNumber = parseFloat(number.toString().split('').reverse().join(''));
+            var resultElement = document.getElementById("result");
+            var inputElement = document.getElementById("numberInput");
+
+            resultElement.textContent = reversedNumber;
+        }
+
+        document.getElementById("numberInput").value;
+    </script>
+</body>
+</html>
